@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Divya 🧿</title>
+  
+  <!-- Google Fonts for Aesthetic Handwritten Style -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Poppins:wght@400;600&family=Sacramento&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .page {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.8s ease-in-out, visibility 0.8s;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .page.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Page Overlay for readability */
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* PAGE 1 STYLES - Using your uploaded photo directly */
+    #page1 {
+      background-image: url('https://i.postimg.cc/m2Vw65V0/image-5.png'); 
+    }
+
+    .queen-btn {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      color: #fff;
+      font-family: 'Sacramento', cursive;
+      font-size: 3.5rem;
+      padding: 15px 40px;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .queen-btn:hover {
+      transform: scale(1.08);
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 12px 40px rgba(255, 182, 193, 0.6);
+    }
+
+    /* PAGE 2 STYLES */
+    #page2 {
+      background-image: url('YOUR_SECOND_PHOTO_DIRECT_LINK_HERE');
+    }
+
+    .note-card {
+      background: rgba(255, 253, 240, 0.92); /* Handwritten paper feel */
+      color: #2c2c2c;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.4rem;
+      line-height: 1.6;
+      max-height: 70vh;
+      overflow-y: auto;
+      text-align: left;
+      border: 1px solid #e0d7c6;
+    }
+
+    .continue-btn {
+      margin-top: 20px;
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 10px 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: transform 0.2s, background-color 0.2s;
+      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.4);
+    }
+
+    .continue-btn:hover {
+      background-color: #ff758f;
+      transform: scale(1.05);
+    }
+
+    /* PAGE 3 STYLES */
+    #page3 {
+      background-image: url('YOUR_THIRD_PHOTO_DIRECT_LINK_HERE');
+    }
+
+    .proposal-box {
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(10px);
+      padding: 40px 30px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .proposal-text {
+      font-size: 1.8rem;
+      font-weight: 600;
+      margin-bottom: 30px;
+      line-height: 1.4;
+      color: #fff;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .yes-btn {
+      background-color: #ff4d6d;
+      color: white;
+      border: none;
+      padding: 12px 35px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 77, 109, 0.5);
+    }
+
+    .yes-btn:hover {
+      transform: scale(1.1);
+      background-color: #ff758f;
+    }
+
+    .thank-you-msg {
+      display: none;
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #ff758f;
+      animation: fadeIn 1s ease-in-out forwards;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PAGE 1 -->
+  <div id="page1" class="page active">
+    <div class="overlay"></div>
+    <div class="content">
+      <button class="queen-btn" onclick="goToPage(2)">Hey Divya ✨</button>
+    </div>
+  </div>
+
+  <!-- PAGE 2 -->
+  <div id="page2" class="page">
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="note-card">
+        <p>
+          I don’t even know where to start because every little thing about you makes me smile. Your laugh is my favorite sound, and the way you talk to me feels so comforting. I love how childish you become with me—it makes every moment lighter and happier. The way you call me “aap” for no reason sometimes just melts my heart. The way you care for me, treat me with kindness, and make me feel valued is something I’ve never experienced with anyone else. With you, even the simplest conversations become my favorite part of the day. Your smile, your cute expressions, your silly moments, your honesty, and the warmth you bring into my life make you truly one of a kind. You make ordinary days feel special just by being there. The peace, happiness, and comfort I feel with you is something I’ve never felt with anyone before. You’re genuinely the bestest part of my life, and no matter how many words I use, they’ll never be enough to explain how much you mean to me. Thank you for being exactly who you are, because you’re not just special to me… you’re my favorite person, my safe place, and honestly, the best thing that’s ever happened to me. ❤️
+        </p>
+      </div>
+      <button class="continue-btn" onclick="goToPage(3)">Continue 💕</button>
+    </div>
+  </div>
+
+  <!-- PAGE 3 -->
+  <div id="page3" class="page">
+    <div class="overlay"></div>
+    <div class="content">
+      <div id="proposalContainer" class="proposal-box">
+        <p class="proposal-text">I am lucky to have you in my life.<br>Will you go on a date with me? ☕✨</p>
+        <div class="btn-group">
+          <button class="yes-btn" onclick="showThankYou()">Yes 🥰</button>
+          <button class="yes-btn" onclick="showThankYou()">Yes 💖</button>
+        </div>
+      </div>
+
+      <div id="thankYouMsg" class="thank-you-msg">
+        Thank You! Noted 🥰❤️
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function goToPage(pageNumber) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById('page' + pageNumber).classList.add('active');
+    }
+
+    function showThankYou() {
+      document.getElementById('proposalContainer').style.display = 'none';
+      document.getElementById('thankYouMsg').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
